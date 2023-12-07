@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { test } from "../../dao/productAdapter.js";
 import { paginateResponseSuccess } from "../../class/response.js";
-import { autenticationFn } from "../out/autentication.js";
+import { autenticationFn } from "../autentication.js";
 
 const productsViewRouter = Router();
 

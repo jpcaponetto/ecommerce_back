@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { autenticationFn } from "../out/autentication.js";
+import { autenticationFn } from "../autentication.js";
 const loginRouter = Router();
 
 loginRouter.get("/login", (req, res) => {
