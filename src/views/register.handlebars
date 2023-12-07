@@ -1,0 +1,75 @@
+<div class="container">
+  <h1>Create User: </h1>
+
+  <article>
+    <form action="/api/sessions/register" method="post">
+      <label for="firstName">
+        firstName
+        <input
+          type="text"
+          name="firstName"
+          id="firstName"
+          placeholder="First Name"
+          required
+        />
+      </label>
+
+      <label for="lastName">
+        lastName
+        <input
+          type="text"
+          name="lastName"
+          id="lastName"
+          placeholder="Last Name"
+          required
+        />
+      </label>
+
+      <label for="email">
+        Email
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="E-mail"
+          required
+        />
+      </label>
+      <label for="">Role:</label>
+      <details role="list">
+        <summary aria-haspopup="listbox">Role</summary>
+        <ul role="listbox">
+          <li>
+            <label for="admin">
+              <input type="radio" id="admin" name="role" value="admin" />
+              Admin
+            </label>
+          </li>
+          <li>
+            <label for="user">
+              <input type="radio" id="user" name="role" value="user" />
+              User
+            </label>
+          </li>
+        </ul>
+      </details>
+      <label for="password">
+        Password
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          required
+        />
+      </label>
+      <label for="age">
+        Age
+        <input type="number" name="age" id="age" placeholder="Age" required />
+      </label>
+      <button>Register</button>
+      <a href="/login">Login</a>
+
+    </form>
+  </article>
+</div>

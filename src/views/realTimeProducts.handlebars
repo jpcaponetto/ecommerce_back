@@ -1,0 +1,189 @@
+<div class="container">
+  <h1>Products - Sockets</h1>
+  <hr />
+  <div class="grid">
+    <div>
+      <h3>Create product</h3>
+      <hr>
+      <form id="form-product">
+        <div class="grid">
+          <label for="title">
+            Title
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Title"
+              required
+            />
+          </label>
+
+          <label for="code">
+            Code
+            <input
+              type="text"
+              id="code"
+              name="code"
+              placeholder="Code"
+              required
+            />
+          </label>
+
+          <label for="category">
+            Category
+            <input
+              type="text"
+              id="category"
+              name="category"
+              placeholder="Category"
+              required
+            />
+          </label>
+        </div>
+        <label for="description">
+          Description
+          <input
+            type="text"
+            id="description"
+            name="description"
+            placeholder="Description"
+            required
+          />
+        </label>
+
+        <div class="grid">
+          <label for="stock">
+            Stock
+            <input
+              type="number"
+              id="stock"
+              name="stock"
+              placeholder="Stock"
+              required
+            />
+          </label>
+          <label for="price">
+            Price
+            <input
+              type="number"
+              id="price"
+              name="price"
+              placeholder="Price"
+              required
+            />
+          </label>
+        </div>
+        <button type="submit">Create </button>
+      </form>
+      <h3>Update product</h3>
+      <hr>
+      <form id="form-update">
+        <label for="uid">
+          Id Product
+          <input
+            type="text"
+            id="uid"
+            name="id"
+            placeholder="Enter the id of the product you want to upgrade"
+            required
+          />
+        </label>
+        <div class="grid">
+          <label for="utitle">
+            Title
+            <input
+              type="text"
+              id="utitle"
+              name="title"
+              placeholder="Title"
+              required
+            />
+          </label>
+
+          <label for="ucode">
+            Code
+            <input
+              type="text"
+              id="ucode"
+              name="code"
+              placeholder="Code"
+              required
+            />
+          </label>
+
+          <label for="ucategory">
+            Category
+            <input
+              type="text"
+              id="ucategory"
+              name="category"
+              placeholder="Category"
+              required
+            />
+          </label>
+        </div>
+        <label for="udescription">
+          Description
+          <input
+            type="text"
+            id="udescription"
+            name="description"
+            placeholder="Description"
+            required
+          />
+        </label>
+
+        <div class="grid">
+          <label for="ustock">
+            Stock
+            <input
+              type="number"
+              id="ustock"
+              name="stock"
+              placeholder="Stock"
+              required
+            />
+          </label>
+          <label for="uprice">
+            Price
+            <input
+              type="number"
+              id="uprice"
+              name="price"
+              placeholder="Price"
+              required
+            />
+          </label>
+        </div>
+        <button type="submit">Update </button>
+      </form>
+      <h3>
+        Delete product
+      </h3>
+      <hr>
+      <form id="form-delete">
+        <label for="idProduct">
+          Id Product
+          <input
+            type="text"
+            id="idProduct"
+            name="idProduct"
+            placeholder="Id product"
+            required
+          />
+        </label>
+        <button type="submit">Delete </button>
+    </div>
+    <div>
+      <h3>Products</h3>
+      <hr>
+      <div id="products-list-mongo" class="container"></div>
+    </div>
+    
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/index.js"></script>

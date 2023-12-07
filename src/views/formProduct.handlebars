@@ -1,0 +1,80 @@
+<div class="container">
+  <h1>Create Product</h1>
+  <form id="form-product">
+    <div class="grid">
+      <label for="title">
+        Title
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Title"
+          required
+        />
+      </label>
+
+      <label for="code">
+        Code
+        <input type="text" id="code" name="code" placeholder="Code" required />
+      </label>
+
+      <label for="category">
+        Category
+        <input
+          type="text"
+          id="category"
+          name="category"
+          placeholder="Category"
+          required
+        />
+      </label>
+    </div>
+
+    <label for="description">
+      Description
+      <input
+        type="text"
+        id="description"
+        name="description"
+        placeholder="Description"
+        required
+      />
+    </label>
+
+    <div class="grid">
+      <label for="stock">
+        Stock
+        <input
+          type="number"
+          id="stock"
+          name="stock"
+          placeholder="Stock"
+          required
+        />
+      </label>
+      <label for="price">
+        Price
+        <input
+          type="number"
+          id="price"
+          name="price"
+          placeholder="Price"
+          required
+        />
+      </label>
+    </div>
+    <button type="submit">Create </button>
+  </form>
+  <hr />
+  <h2>Delete product 🗑️</h2>
+  <form id="delete-form">
+    <label for="id-product">
+      ID Product
+      <input type="id-product" id="id-product" name="id-product" required />
+    </label>
+    <button type="submit"> Delete </button>
+  </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/formProduct.js"></script>
