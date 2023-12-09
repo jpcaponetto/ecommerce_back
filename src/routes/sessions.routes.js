@@ -7,6 +7,7 @@ import {
 } from "../dao/userAdapater.js";
 import bcrypt from "bcrypt";
 import { createCartAdapter } from "../dao/cartAdapter.js";
+import passport from "passport";
 
 const sessionsRouter = Router();
 sessionsRouter.post("/sessions/register", async (req, res) => {
@@ -42,7 +43,7 @@ sessionsRouter.post("/sessions/login", async (req, res) => {
   } catch (error) {}
 });
 
-authRoute.post(
+sessionsRouter.post(
   "/sessions/auth/register",
   passport.authenticate("register", { failureRedirect: "/register" }),
   async (req, res) => {

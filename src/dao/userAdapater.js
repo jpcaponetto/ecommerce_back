@@ -27,6 +27,10 @@ export const checkPassword = async (password) => {
   }
 };
 
+export const findUserById = async (id) => {
+  return await userSchema.findOne({ _id: id });
+};
+
 export const createPayload = (user) => {
   const payload = {
     firstName: user.firstName,
