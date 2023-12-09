@@ -12,9 +12,15 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import { MONGO_URI } from "./database/mongodb.js";
 import sessionsRouter from "./routes/sessions.routes.js";
+import { init as PassportInit } from "./config/passport.config.js";
+import passport from "passport";
 
 const app = express();
 const secret = "Este valor es secreto";
+PassportInit();
+
+app.use(passport.initialize);
+app.use(passport.session);
 
 app.use(
   session({

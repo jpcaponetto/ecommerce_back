@@ -42,6 +42,14 @@ sessionsRouter.post("/sessions/login", async (req, res) => {
   } catch (error) {}
 });
 
+authRoute.post(
+  "/sessions/auth/register",
+  passport.authenticate("register", { failureRedirect: "/register" }),
+  async (req, res) => {
+    res.redirect("/login");
+  }
+);
+
 sessionsRouter.get("/sessions/logout", (req, res) => {
   req.session.destroy((err) => {
     if (!err) {
