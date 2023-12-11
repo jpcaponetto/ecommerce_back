@@ -7,6 +7,7 @@ import {
 } from "../dao/userAdapater.js";
 import bcrypt from "bcrypt";
 import { createCartAdapter } from "../dao/cartAdapter.js";
+import passport from "passport";
 
 const sessionsRouter = Router();
 sessionsRouter.post("/sessions/register", async (req, res) => {
@@ -41,6 +42,35 @@ sessionsRouter.post("/sessions/login", async (req, res) => {
     }
   } catch (error) {}
 });
+
+sessionsRouter.post(
+  "/sessions/out_login",
+  passport.authenticate("login", { failureRedirect: "/login" }),
+  async (req, res) => {
+    res.redirect("/profile");
+  }
+);
+
+sessionsRouter.get(
+  "/sessions/github",
+  passport.authenticate("github", { scope: ["user:email"] })
+);
+
+sessionsRouter.get(
+  "/sessions/github/callback",
+  passport.authenticate("github", { failureRedirect: "login" }),
+  (req, res) => {
+    res.redirect("/profile");
+  }
+);
+
+sessionsRouter.post(
+  "/sessions/auth/register",
+  passport.authenticate("register", { failureRedirect: "/register" }),
+  async (req, res) => {
+    res.redirect("/login");
+  }
+);
 
 sessionsRouter.get("/sessions/logout", (req, res) => {
   req.session.destroy((err) => {
