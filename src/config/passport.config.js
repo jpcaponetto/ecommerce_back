@@ -1,8 +1,9 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import bcrypt from "bcrypt";
-import { createUser, findUserById } from "../dao/userAdapater.js";
+import { createUser, findEmail, findUserById } from "../dao/userAdapater.js";
 import { createCartAdapter } from "../dao/cartAdapter.js";
+import { Strategy as GitHubStrategy } from "passport-github2";
 
 export const Init = () => {
   passport.use(
@@ -38,6 +39,53 @@ export const Init = () => {
             done(error.message);
           }
         }
+      }
+    )
+  );
+  passport.use(
+    "login",
+    new LocalStrategy(
+      { usernameField: "email" },
+      async (email, password, done) => {
+        const newemail = await findEmail(email);
+        if (!newemail) {
+          return done(new Error("No se encontró el email o la constraseña"));
+        }
+        const check = bcrypt.compareSync(password, newemail.password);
+        if (check) {
+          return done(null, newemail);
+        }
+      }
+    )
+  );
+  passport.use(
+    "github",
+    new GitHubStrategy(
+      {
+        clientID: process.env.clientid,
+        clientSecret: process.env.secretclient,
+        callbackURL: "http://localhost:7000/api/sessions/github/callback",
+      },
+      async (accessToken, refreshToken, profile, done) => {
+        const { userName, provider, displayName } = profile;
+        const getEmail = profile._json.email || "test@test";
+        const femail = await findEmail(getEmail);
+        if (femail) {
+          return done(null, femail);
+        }
+        const user = {
+          firstName: profile._json.name,
+          lastName: "",
+          email: getEmail,
+          username: displayName,
+          provider,
+          password: "",
+          age: 31,
+        };
+        const cart = await createCartAdapter({ products: [] });
+        const id = cart._id;
+        const wuser = await createUser(user, id);
+        return done(null, wuser);
       }
     )
   );

@@ -44,6 +44,27 @@ sessionsRouter.post("/sessions/login", async (req, res) => {
 });
 
 sessionsRouter.post(
+  "/sessions/out_login",
+  passport.authenticate("login", { failureRedirect: "/login" }),
+  async (req, res) => {
+    res.redirect("/profile");
+  }
+);
+
+sessionsRouter.get(
+  "/sessions/github",
+  passport.authenticate("github", { scope: ["user:email"] })
+);
+
+sessionsRouter.get(
+  "/sessions/github/callback",
+  passport.authenticate("github", { failureRedirect: "login" }),
+  (req, res) => {
+    res.redirect("/profile");
+  }
+);
+
+sessionsRouter.post(
   "/sessions/auth/register",
   passport.authenticate("register", { failureRedirect: "/register" }),
   async (req, res) => {

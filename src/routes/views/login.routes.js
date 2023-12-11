@@ -11,7 +11,7 @@ loginRouter.get("/register", (req, res) => {
 });
 
 loginRouter.get("/profile", autenticationFn, (req, res) => {
-  res.render("profile", req.session.user);
+  res.render("profile", req.user);
 });
 
 export default loginRouter;
